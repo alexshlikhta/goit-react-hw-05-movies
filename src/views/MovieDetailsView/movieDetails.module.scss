@@ -1,0 +1,60 @@
+.movie {
+  &_back {
+    margin-bottom: 20px;
+    display: inline-block;
+    transition: all ease-out 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      letter-spacing: 0.5px;
+      color: rgb(105, 105, 255);
+    }
+  }
+
+  &_box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    min-height: 50vh;
+
+    &_pic {
+      max-width: 50%;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &_desc {
+      padding-left: 50px;
+
+      &__title {
+        display: block;
+        padding-top: 20px;
+      }
+    }
+  }
+
+  &_add {
+    max-width: 600px;
+
+    &_item a {
+      margin-top: 10px;
+      color: black;
+      display: inline-block;
+      text-decoration: none;
+      transition: color ease-out 0.2s;
+
+      &:hover {
+        text-decoration: underline;
+        color: rgb(105, 105, 255);
+      }
+    }
+  }
+
+  &_error {
+      text-align: center;
+  }
+}

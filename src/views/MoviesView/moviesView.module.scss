@@ -1,0 +1,32 @@
+.search {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  &_el {
+    display: flex;
+    margin: 10px 20px;
+    display: inline-block;
+    width: calc(12.5% - 40px);
+
+    &_pic {
+      max-width: 200px;
+    }
+
+    &_desc {
+
+      &__title {
+        padding-top: 20px;
+        display: block;
+      }
+
+      &__subtitle {
+        display: block;
+        padding-top: 20px;
+      }
+    }
+  }
+}

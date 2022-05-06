@@ -1,0 +1,27 @@
+.cast {
+  list-style-type: none;
+  padding-left: 60px;
+
+  &_el {
+    display: flex;
+    margin-bottom: 20px;
+
+    &_pic {
+      max-width: 200px;
+    }
+
+    &_desc {
+      padding-left: 20px;
+
+      &__title {
+        padding-top: 20px;
+        display: block;
+      }
+
+      &__subtitle {
+        display: block;
+        padding-top: 20px;
+      }
+    }
+  }
+}

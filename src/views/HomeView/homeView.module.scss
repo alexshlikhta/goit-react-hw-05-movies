@@ -1,0 +1,24 @@
+.list {
+    &_box {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        &_el {
+            margin: 10px 0;
+        }
+
+        & a {
+            text-decoration: none;
+            color: #000000;
+            transition: all ease-out 0.2s;
+            transform: scale(1);
+
+            &:hover {
+                color: #0d3eff;
+                text-decoration: underline;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ import s from "./moviesView.module.scss";
 export default function MoviesView() {
   const [movies, setMovies] = useState(null);
   const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const handleSubmit = (query) => {
     setQuery(query);

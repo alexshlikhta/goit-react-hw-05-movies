@@ -6,7 +6,6 @@ export default function MovieSearch({ onSubmit }) {
   const [inputQuery, setInputQuery] = useState("");
   const navigate = useNavigate();
 
-
   const onSearchInputChange = (e) => {
     setInputQuery(e.target.value);
   };

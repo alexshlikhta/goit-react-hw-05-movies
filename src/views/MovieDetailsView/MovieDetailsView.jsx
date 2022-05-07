@@ -1,16 +1,21 @@
 import React from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useMovieDetailsHook from "../../hooks/useMovieDetailsHook";
 import s from "./movieDetails.module.scss";
 
 export default function MovieDetailsView() {
   const movie = useMovieDetailsHook();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const goBack = ()=>{
+    navigate(location?.state?.pathname ?? '/');
+  }
 
   return (
     <>
       <main className={s.movie}>
-        <span className={s.movie_back} onClick={() => navigate(-1)}>
+        <span className={s.movie_back} onClick={()=>goBack()}>
           ← Go back
         </span>
 
@@ -48,11 +53,11 @@ export default function MovieDetailsView() {
 
             <ul className={s.movie_add}>
               <li className={s.movie_add_item}>
-                <NavLink to={"cast"}>Cast</NavLink>
+                <Link to={"cast"}>Cast</Link>
               </li>
 
               <li className={s.movie_add_item}>
-                <NavLink to={"reviews"}>Reviews</NavLink>
+                <Link to={"reviews"}>Reviews</Link>
               </li>
             </ul>
             <Outlet />

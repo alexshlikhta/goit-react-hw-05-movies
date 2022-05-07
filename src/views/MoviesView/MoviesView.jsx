@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import MovieSearch from "../../components/MovieSearch";
 import * as movieAPI from "../../services/MovieAPI";
 import s from "./moviesView.module.scss";
 
 export default function MoviesView() {
   const [movies, setMovies] = useState(null);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   const handleSubmit = (query) => {
     setQuery(query);
   };
 
   useEffect(() => {
-    if (query === "" && !searchParams.get('query')) return;
+    if (query === "" && !searchParams.get("query")) return;
 
-    if(searchParams.get('query')) {
-      let queriedValue = searchParams.get('query').toLowerCase().trim();
+    if (searchParams.get("query")) {
+      let queriedValue = searchParams.get("query").toLowerCase().trim();
       movieAPI.getQueriedMovie(queriedValue).then((res) => setMovies(res.results));
     } else {
       let queriedValue = query.toLowerCase().trim();
       movieAPI.getQueriedMovie(queriedValue).then((res) => setMovies(res.results));
     }
-
   }, [query, searchParams]);
 
   return (
@@ -35,7 +35,9 @@ export default function MoviesView() {
           {movies &&
             movies.map(({ id, title, poster_path }) => (
               <li className={s.search_el} key={id}>
-                <NavLink to={`/movies/${id}`}>
+                <Link
+                  to={`/movies/${id}`} state={location}
+                >
                   <div className={s.search_el_pic}>
                     {poster_path ? (
                       <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt="" />
@@ -49,7 +51,7 @@ export default function MoviesView() {
                       <b>Name:</b> {title ? title : "Not found"}
                     </span>
                   </div>
-                </NavLink>
+                </Link>
               </li>
             ))}
         </ul>

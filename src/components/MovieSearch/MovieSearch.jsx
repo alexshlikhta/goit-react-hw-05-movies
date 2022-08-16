@@ -19,14 +19,12 @@ export default function MovieSearch({ onSubmit }) {
   };
 
   return (
-    <>
-      <form className={s.form} onSubmit={onSearchBarSubmit}>
-        <input value={inputQuery} onChange={onSearchInputChange} placeholder="Search images and photos" />
+    <form className={s.form} onSubmit={onSearchBarSubmit}>
+      <input value={inputQuery} onChange={onSearchInputChange} placeholder="Search images and photos" />
 
-        <button type="submit">
-          <span className="button-label">Search</span>
-        </button>
-      </form>
-    </>
+      <button type="submit">
+        <span className="button-label">Search</span>
+      </button>
+    </form>
   );
 }

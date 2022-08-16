@@ -1,21 +1,20 @@
-import React from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import useMovieDetailsHook from "../../hooks/useMovieDetailsHook";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import * as movieAPI from "../../services/MovieAPI";
 import s from "./movieDetails.module.scss";
 
 export default function MovieDetailsView() {
-  const movie = useMovieDetailsHook();
-  const location = useLocation();
   const navigate = useNavigate();
-
-  const goBack = ()=>{
-    navigate(location?.state?.pathname ?? '/');
-  }
+  const { movieId } = useParams();
+  const [movie, setMovie] = useState(null);
+  useEffect(() => {
+    movieAPI.getMovieDetails(movieId).then(setMovie);
+  }, [movieId]);
 
   return (
     <>
       <main className={s.movie}>
-        <span className={s.movie_back} onClick={()=>goBack()}>
+        <span className={s.movie_back} onClick={() => navigate(-1)}>
           ← Go back
         </span>
 

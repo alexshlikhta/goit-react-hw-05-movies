@@ -10,10 +10,6 @@ export default function MoviesView() {
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
-  const handleSubmit = (query) => {
-    setQuery(query);
-  };
-
   useEffect(() => {
     if (query === "" && !searchParams.get("query")) return;
 
@@ -27,35 +23,31 @@ export default function MoviesView() {
   }, [query, searchParams]);
 
   return (
-    <>
-      <main>
-        <MovieSearch onSubmit={handleSubmit} />
+    <main>
+      <MovieSearch onSubmit={setQuery} />
 
-        <ul className={s.search}>
-          {movies &&
-            movies.map(({ id, title, poster_path }) => (
-              <li className={s.search_el} key={id}>
-                <Link
-                  to={`/movies/${id}`} state={location}
-                >
-                  <div className={s.search_el_pic}>
-                    {poster_path ? (
-                      <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt="" />
-                    ) : (
-                      <img src={"https://miro.medium.com/max/400/1*Y9-6_bh5a00rJWWoQ28NMQ.jpeg"} alt="character" />
-                    )}
-                  </div>
+      <ul className={s.search}>
+        {movies &&
+          movies.map(({ id, title, poster_path }) => (
+            <li className={s.search_el} key={id}>
+              <Link to={`/movies/${id}`} state={location}>
+                <div className={s.search_el_pic}>
+                  {poster_path ? (
+                    <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt="" />
+                  ) : (
+                    <img src={"https://miro.medium.com/max/400/1*Y9-6_bh5a00rJWWoQ28NMQ.jpeg"} alt="character" />
+                  )}
+                </div>
 
-                  <div className={s.search_el_desc}>
-                    <span className={s.search_el_desc__title}>
-                      <b>Name:</b> {title ? title : "Not found"}
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            ))}
-        </ul>
-      </main>
-    </>
+                <div className={s.search_el_desc}>
+                  <span className={s.search_el_desc__title}>
+                    <b>Name:</b> {title ? title : "Not found"}
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+      </ul>
+    </main>
   );
 }

@@ -16,7 +16,7 @@ export async function getQueriedMovie(query) {
   return response.data;
 }
 
-export async function getMovieDetails(id) {
+export async function getMovieDetails(id) { 
   const response = await axios.get(`${byIdMovies}/${id}?api_key=${API_KEY}`);
   return response.data;
 }

@@ -3,20 +3,14 @@ import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { lazy } from "react";
 
-function getAsyncView({ name, type }) {
-  if (type === "component") {
-    return lazy(() => import(`./components/${name}`));
-  }
-  return lazy(() => import(`./views/${name}`));
-}
+const AsyncHomeView = lazy(() => import(`./views/HomeView`));
+const AsyncMoviesView = lazy(() => import(`./views/MoviesView`));
+const AsyncLayoutView = lazy(() => import(`./views/LayoutView`));
+const AsyncNotFoundView = lazy(() => import(`./views/NotFoundView`));
+const AsyncMovieDetailsView = lazy(() => import(`./views/MovieDetailsView`));
 
-const AsyncHomeView = getAsyncView({ name: "HomeView", type: "view" });
-const AsyncMoviesView = getAsyncView({ name: "MoviesView", type: "view" });
-const AsyncLayoutView = getAsyncView({ name: "LayoutView", type: "view" });
-const AsyncNotFoundView = getAsyncView({ name: "NotFoundView", type: "view" });
-const AsyncMovieDetailsView = getAsyncView({ name: "MovieDetailsView", type: "view" });
-const AsyncMovieCast = getAsyncView({ name: "MovieCast", type: "component" });
-const AsyncMovieReviews = getAsyncView({ name: "MovieReviews", type: "component" });
+const AsyncMovieCast = lazy(() => import(`./components/MovieCast`));
+const AsyncMovieReviews = lazy(() => import(`./components/MovieReviews`));
 
 export default function App() {
   return (
